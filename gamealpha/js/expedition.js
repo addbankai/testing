@@ -209,18 +209,18 @@
   // ===========================
   if (typeof resources === "undefined") {
   window.resources = {
-    gold: 9999999999,
-    silver: 9999999999,
-    diamond: 9999999999,
-    bronze: 9999999999,
-    iron: 9999999999,
-    steel: 9999999999,
-    wood: 9999999999,
-    stone: 9999999999,
-    water: 9999999999,
-    food: 9999999999,
-    utility: 9999999999,
-    population: 20000,
+    gold: 1000,
+    silver: 1000,
+    diamond: 1000,
+    bronze: 1000,
+    iron: 1000,
+    steel: 1000,
+    wood: 1000,
+    stone: 1000,
+    water: 1000,
+    food: 1000,
+    utility: 1000,
+    population: 10,
     celestials: 0  // if you still need this key
   };
 }
@@ -931,7 +931,7 @@
     normalBtn.style.fontSize = btnStyle.fontSize;
     normalBtn.style.padding = btnStyle.padding;
     normalBtn.addEventListener("click", function() {
-      startExpedition("Normal", { duration: 1, lootMin: 1, lootMax: 2 });
+      startExpedition("Normal", { duration: 360, lootMin: 1, lootMax: 2 });
     });
     expeditionPopup.appendChild(normalBtn);
 
@@ -940,7 +940,7 @@
     hardcoreBtn.style.fontSize = btnStyle.fontSize;
     hardcoreBtn.style.padding = btnStyle.padding;
     hardcoreBtn.addEventListener("click", function() {
-      startExpedition("Hardcore", { duration: 1, lootMin: 2, lootMax: 3 });
+      startExpedition("Hardcore", { duration: 3600, lootMin: 2, lootMax: 3 });
     });
     expeditionPopup.appendChild(hardcoreBtn);
 
@@ -949,7 +949,7 @@
     suicidalBtn.style.fontSize = btnStyle.fontSize;
     suicidalBtn.style.padding = btnStyle.padding;
     suicidalBtn.addEventListener("click", function() {
-      startExpedition("Suicidal", { duration: 1, lootMin: 3, lootMax: 10 });
+      startExpedition("Suicidal", { duration: 21600, lootMin: 3, lootMax: 10 });
     });
     expeditionPopup.appendChild(suicidalBtn);
 
