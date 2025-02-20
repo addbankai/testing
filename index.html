@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hero Labs - Idle City Heroes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* BODY with Sunset Gradient */
+    body {
+      font-family: 'Press Start 2P', cursive, monospace;
+      background: linear-gradient(to bottom, #ff7e5f, #feb47b, #ffcc66);
+      color: #FFFFFF;
+      overflow-x: hidden;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    /* HEADER */
+    header {
+      z-index: 4;
+    }
+    header .logo {
+      width: 270px;
+      margin: 0 auto 10px;
+    }
+    header .logo img {
+      width: 100%;
+      display: block;
+    }
+    header p {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    /* NAVIGATION (if needed) */
+    nav {
+      background: #222;
+      padding: 10px;
+      text-align: center;
+      z-index: 4;
+    }
+    nav a {
+      color: #FFD700;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 14px;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+    nav a:hover {
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    /* OSCILLATING CLOUDS */
+    .clouds {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -3;
+    }
+    .cloud {
+      position: absolute;
+      animation: moveLeftRight var(--duration) ease-in-out infinite;
+    }
+    @keyframes moveLeftRight {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(var(--amp)); }
+      100% { transform: translateX(0); }
+    }
+    .cloud.cloud1 {
+      top: 5%;
+      left: 8%;
+      width: 180px;
+      --duration: 6s;
+      --amp: 80px;
+    }
+    .cloud.cloud2 {
+      top: 12%;
+      left: 45%;
+      width: 220px;
+      --duration: 8s;
+      --amp: -100px;
+    }
+    .cloud.cloud3 {
+      top: 20%;
+      left: 78%;
+      width: 160px;
+      --duration: 7s;
+      --amp: 70px;
+    }
+    .cloud.cloud4 {
+      top: 10%;
+      left: 65%;
+      width: 200px;
+      --duration: 9s;
+      --amp: -90px;
+    }
+    .cloud.cloud5 {
+      top: 35%;
+      left: 15%;
+      width: 190px;
+      --duration: 6s;
+      --amp: 60px;
+    }
+    .cloud.cloud6 {
+      top: 30%;
+      left: 88%;
+      width: 150px;
+      --duration: 7s;
+      --amp: -80px;
+    }
+
+    /* MOUNTAINS */
+    .mountains {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      pointer-events: none;
+      transform: translateY(-150px);
+      z-index: -2;
+    }
+    .mountain {
+      position: absolute;
+      bottom: 0;
+    }
+    .mountain1 {
+      left: 5%;
+      width: 650px;
+    }
+    .mountain2 {
+      left: 40%;
+      width: 500px;
+    }
+    .mountain3 {
+      left: 75%;
+      width: 750px;
+    }
+
+    /* TREE DIVIDER */
+    .tree-divider {
+      position: relative;
+      z-index: -1;
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: flex-end;
+      margin-top: 20px;
+    }
+    .tree-divider img {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      margin: 0 -20px;
+    }
+
+    /* HERO SECTION CONTAINER */
+    .container {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem;
+    }
+
+    /* MAIN HEADING */
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      padding: 6rem;
+    }
+    /* SUBTITLE */
+    .subtitle {
+      font-size: 1rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      line-height: 1.2;
+      text-align: center;   
+    }
+    /* CTA BUTTONS */
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .cta-buttons a {
+      background-color: #FFE600;
+      color: #000;
+      padding: 1rem 1.5rem;
+      font-size: 0.8rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      border: 2px solid #000;
+      box-shadow: 4px 4px 0 #000;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin: 5px;
+    }
+    .cta-buttons a:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 #000;
+    }
+
+    /* ABOUT US SECTION */
+    .about-section {
+      position: relative;
+      z-index: 3;
+      background-color: #1A1A1A;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-top: -30px;
+      padding-top: 30px;
+    }
+    .about-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .about-section p {
+      font-size: 0.9rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+      color: #FFD700;
+    }
+
+    /* RESPONSIVE STYLES */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+        padding: 1rem;
+      }
+      .subtitle {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 1.5rem;
+      }
+      .cta-buttons a {
+        font-size: 0.7rem;
+        padding: 0.7rem 1rem;
+      }
+      .tree-divider img {
+        max-width: 180px;
+        margin: 0 -5px;
+      }
+      /* Scale mountains for mobile */
+      .mountain1, .mountain2, .mountain3 {
+        width: 200px !important;
+      }
+      .about-section h2 {
+        font-size: 1.4rem;
+      }
+      .about-section p {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header with Logo and Title -->
+  <header>
+    <div class="logo">
+      <img src="gamealpha/img/logo.png" alt="Hero Labs Logo">
+    </div>
+  </header>
+
+
+  <!-- Oscillating Clouds -->
+  <div class="clouds">
+    <img class="cloud cloud1" src="gamealpha/img/cloud1.png" alt="Cloud">
+    <img class="cloud cloud2" src="gamealpha/img/cloud2.png" alt="Cloud">
+    <img class="cloud cloud3" src="gamealpha/img/cloud3.png" alt="Cloud">
+    <img class="cloud cloud4" src="gamealpha/img/cloud4.png" alt="Cloud">
+    <img class="cloud cloud5" src="gamealpha/img/cloud5.png" alt="Cloud">
+    <img class="cloud cloud6" src="gamealpha/img/cloud6.png" alt="Cloud">
+  </div>
+
+  <!-- Mountains -->
+  <div class="mountains">
+    <img class="mountain mountain1" src="gamealpha/img/mountain.png" alt="Mountain">
+    <img class="mountain mountain2" src="gamealpha/img/mountain.png" alt="Mountain">
+    <img class="mountain mountain3" src="gamealpha/img/mountain.png" alt="Mountain">
+  </div>
+
+  <!-- Hero Section -->
+    <h1>IDLE CITY HERO</h1>
+    <p class="subtitle">
+      Build your ultimate city and heroes in a pixelated universe where strategy meets infinite customization.
+      Unlock special items, upgrade your gear, and team up with friends for an epic journey!
+    </p>
+    <div class="cta-buttons">
+      <a href="http://idleconomy.fun/gamealpha" target="_blank">Play Alpha</a>
+      <a href="http://idleconomy.fun/whitepaper" target="_blank">Read Whitepaper</a>
+    </div>
+  </div>
+
+  <!-- Tree Divider -->
+  <div class="tree-divider">
+    <img src="gamealpha/img/tree.png" alt="Tree">
+    <img src="gamealpha/img/tree.png" alt="Tree">
+    <img src="gamealpha/img/tree.png" alt="Tree">
+    <img src="gamealpha/img/tree.png" alt="Tree">
+    <img src="gamealpha/img/tree.png" alt="Tree">
+    <img src="gamealpha/img/tree.png" alt="Tree">
+    <img src="gamealpha/img/tree.png" alt="Tree">
+    <img src="gamealpha/img/tree.png" alt="Tree">
+    <img src="gamealpha/img/tree.png" alt="Tree">
+    <img src="gamealpha/img/tree.png" alt="Tree">
+  </div>
+
+  <!-- About Us Section -->
+  <section class="about-section">
+    <h2>About Us</h2>
+    <p>
+      Hero Labs fuses city simulation with MMORPG action. Build a thriving metropolis, customize your heroes, and unlock rare items with our unique gacha system.
+    </p>
+  </section>
+</body>
+</html>
